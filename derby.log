@@ -1,12 +1,12 @@
 ----------------------------------------------------------------
-Sun May 24 23:18:01 CEST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014d-87ca-2366-00000610b808 
+Wed May 27 17:42:54 CEST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014d-960a-6876-0000053f0298 
 on database directory C:\Users\ecm\workspace_javaJ2ee\Tuto_Spring_artefactId\target\taskdb with class loader WebappClassLoader
   context: 
   delegate: false
   repositories:
 ----------> Parent Classloader:
-ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@77cde100]
+ClassRealm[plugin>org.apache.tomcat.maven:tomcat7-maven-plugin:2.2, parent: sun.misc.Launcher$AppClassLoader@6d6f0472]
  
 Loaded from file:/C:/Users/ecm/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Sun Microsystems Inc.
