@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import fr.todooz.util.TagCloud;
 @Controller
 public class IndexController {
     @Inject
+    @Qualifier( "hibernate" )
     private TaskService     taskService;
 
     @Inject
