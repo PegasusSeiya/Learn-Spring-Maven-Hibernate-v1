@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>Tuto_Spring_groupId</groupId>
-	<artifactId>Tuto_Spring_artefactId</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>Learn-Java-J2EE</groupId>
+	<artifactId>J2EE-Spring-Maven</artifactId>
+	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>Tuto_Spring_artefactId</name>
+	<name>J2EE-Spring-Maven</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
