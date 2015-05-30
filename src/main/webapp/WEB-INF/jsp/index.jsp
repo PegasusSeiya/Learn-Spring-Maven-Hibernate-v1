@@ -7,10 +7,12 @@
 <html>
 <head>
 <title>Todooz</title>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="page"/>
+<c:set var="rootPath" value="/J2EE-Spring-Maven-1.0" scope="page"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
-<link href="/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+<link href="${contextPath}/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet" media="screen">
 
 <style type="text/css">
@@ -28,6 +30,7 @@ body {
 		<div class="row">
 			<div class="col-lg-7 col-lg-offset-1">
 				<legend>All tasks</legend>
+				<c:out value="contextPath = ${contextPath}"/>
 				<c:forEach var="task" items="${tasks}">
 					<widget:task task="${task}" />
 				</c:forEach>
@@ -37,8 +40,8 @@ body {
 					<div class="panel-heading">Quick links</div>
 					<div class="panel-body">
 						<ul>
-							<li><a href="/deadLine/today">Today's</a></li>
-							<li><a href="/deadLine/tomorrow">Tomorrow's</a></li>
+							<li><a href="<c:url value="${rootPath}/deadLine/today"/>">Today's</a></li>
+							<li><a href="<c:url value="${rootPath}/deadLine/tomorrow"/>">Tomorrow's</a></li>
 						</ul>
 					</div>
 				</div>
@@ -47,15 +50,14 @@ body {
 					<div class="panel-heading">Tags</div>
 					<div class="panel-body">
 						<c:forEach var="tag" items="${tagCloud.tags}">
-							<a href="/tag/<c:out value="${tag}" />" style="font-size: 14px"><c:out
-									value="${tag}" /></a>
+							<a href="${rootPath}/tag/${tag}" style="font-size: 14px"><c:out value="${tag}" /></a>
 						</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="/jquery/jquery-2.1.4.js"></script>
-	<script src="/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/jquery/jquery-2.1.4.js"></script>
+	<script src="${contextPath}/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

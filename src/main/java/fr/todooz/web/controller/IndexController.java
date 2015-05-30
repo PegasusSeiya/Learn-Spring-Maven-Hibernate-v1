@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,9 @@ public class IndexController {
     }
 
     @RequestMapping( { "/", "/index" } )
-    public String index( Model model ) {
+    public String index( Model model, HttpServletRequest request ) {
+        System.out.println( "Index Request Mapping URI : " + request.getRequestURI() );
+        System.out.println( "Index Request Mapping URL : " + request.getRequestURL() );
         List<Task> tasks = taskService.findAll();
         model.addAttribute( "tasks", tasks );
 
@@ -63,13 +66,13 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping( "/hello" )
+    @RequestMapping( "hello" )
     @ResponseBody
     public String hello() {
         return "Hello world";
     }
 
-    @RequestMapping( "/search" )
+    @RequestMapping( "search" )
     public String search( String query, Model model ) {
         List<Task> taskQueried = taskService.findByQuery( query );
         model.addAttribute( "tasks", taskQueried );
@@ -80,7 +83,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping( "/tag/{tag}" )
+    @RequestMapping( "tag/{tag}" )
     public String tag( @PathVariable String tag, Model model ) {
         List<Task> taskQueried = taskService.findByTag( tag );
         model.addAttribute( "tasks", taskQueried );
@@ -91,7 +94,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping( "/deadLine/{queryDeadline}" )
+    @RequestMapping( "deadLine/{queryDeadline}" )
     public String deadLine( @PathVariable String queryDeadline, Model model ) {
 
         List<Task> taskQueried = taskService.findByDate( queryDeadline );

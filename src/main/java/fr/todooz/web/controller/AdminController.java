@@ -28,10 +28,12 @@ import fr.todooz.util.TagCloud;
 public class AdminController {
     @Inject
     @Qualifier( "hibernate" )
-    private TaskService     taskService;
+    private TaskService         taskService;
 
     @Inject
-    private TagCloudService tagCloudService;
+    private TagCloudService     tagCloudService;
+
+    private static final String rootPath = "/J2EE-Spring-Maven-1.0/";
 
     /**
      * Un attribut TagCloud tagCloud va être ajouté au modèle quelle que soit la
@@ -55,7 +57,7 @@ public class AdminController {
         binder.registerCustomEditor( Date.class, new CustomDateEditor( dateFormatter, true ) );
     }
 
-    @RequestMapping( "/add" )
+    @RequestMapping( "add" )
     public String add( Model model ) {
         // on injecte une Task vierge dans le modèle
         model.addAttribute( "task", new Task() );
@@ -63,14 +65,14 @@ public class AdminController {
         return "edit";
     }
 
-    @RequestMapping( "/edit/{id}" )
+    @RequestMapping( "edit/{id}" )
     public String edit( @PathVariable Long id, Model model ) {
         model.addAttribute( "task", taskService.findById( id ) );
 
         return "edit";
     }
 
-    @RequestMapping( value = "/edit", method = RequestMethod.POST )
+    @RequestMapping( value = "edit", method = RequestMethod.POST )
     public String saveOrUpdate( @ModelAttribute @Valid Task task, BindingResult result,
             RedirectAttributes redirectAttributes ) {
         if ( result.hasErrors() ) {
@@ -80,17 +82,17 @@ public class AdminController {
 
         redirectAttributes.addFlashAttribute( "flashMessage", "Sauvegarde réussie." );
 
-        return "redirect:/";
+        return "redirect:" + rootPath;
     }
 
-    @RequestMapping( "/edit/{id}/delete" )
+    @RequestMapping( "edit/{id}/delete" )
     public String delete( @PathVariable Long id, Model model, RedirectAttributes redirectAttributes ) {
         taskService.delete( id );
         model.addAttribute( "task", taskService.findById( id ) );
 
         redirectAttributes.addFlashAttribute( "flashMessage", "Suppression réussie." );
 
-        return "redirect:/";
+        return "redirect:" + rootPath;
     }
 
 }
