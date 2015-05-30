@@ -53,7 +53,7 @@ public class IndexController {
         return tagCloudService.buildTagCloud();
     }
 
-    @RequestMapping( { "/", "/index" } )
+    @RequestMapping( { "/", "index" } )
     public String index( Model model, HttpServletRequest request ) {
         System.out.println( "Index Request Mapping URI : " + request.getRequestURI() );
         System.out.println( "Index Request Mapping URL : " + request.getRequestURL() );

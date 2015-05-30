@@ -7,8 +7,8 @@
 <html>
 <head>
 <title>Todooz</title>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="page"/>
-<c:set var="rootPath" value="/J2EE-Spring-Maven-1.0" scope="page"/>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="page"/>
+<c:set var="rootPath" value="" scope="page"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
@@ -31,6 +31,7 @@ body {
 			<div class="col-lg-7 col-lg-offset-1">
 				<legend>All tasks</legend>
 				<c:out value="contextPath = ${contextPath}"/>
+				<c:out value="contextPath = ${pageContext.servletContext.contextPath}"/>
 				<c:forEach var="task" items="${tasks}">
 					<widget:task task="${task}" />
 				</c:forEach>

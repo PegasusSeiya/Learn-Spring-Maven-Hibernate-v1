@@ -33,7 +33,7 @@ public class AdminController {
     @Inject
     private TagCloudService     tagCloudService;
 
-    private static final String rootPath = "/J2EE-Spring-Maven-1.0/";
+    private static final String rootPath = "/"; // "/J2EE-Spring-Maven-1.0/";
 
     /**
      * Un attribut TagCloud tagCloud va être ajouté au modèle quelle que soit la

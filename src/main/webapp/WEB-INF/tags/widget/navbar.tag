@@ -1,6 +1,8 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="rootPath" value="/J2EE-Spring-Maven-1.0" scope="page"/>
+
+<c:set var="rootPath" value="" scope="page"/>
+
 <div class="navbar navbar-default">
     <div class="navbar-header">
         <a class="navbar-brand" href="${rootPath}/">Todooz</a>

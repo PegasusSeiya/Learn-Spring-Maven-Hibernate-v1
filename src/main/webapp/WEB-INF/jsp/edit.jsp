@@ -7,8 +7,8 @@
 <html>
 <head>
 <title>Todooz</title>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="page"/>
-<c:set var="rootPath" value="/J2EE-Spring-Maven-1.0" scope="page"/>
+<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="page"/>
+<c:set var="rootPath" value="" scope="page"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->

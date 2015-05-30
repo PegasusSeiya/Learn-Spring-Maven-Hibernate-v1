@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:set var="rootPath" value="/J2EE-Spring-Maven-1.0" scope="page"/>
+<c:set var="rootPath" value="" scope="page"/>
 <div>
 	<p>
 		<fmt:formatDate value="${task.date}" pattern="dd MM yyyy" />
