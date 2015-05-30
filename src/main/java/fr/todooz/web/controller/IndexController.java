@@ -56,6 +56,7 @@ public class IndexController {
     @RequestMapping( { "/", "index" } )
     public String index( Model model, HttpServletRequest request ) {
         List<Task> tasks = taskService.findAll();
+        model.addAttribute( "tasks", tasks );
 
         return "index";
     }
