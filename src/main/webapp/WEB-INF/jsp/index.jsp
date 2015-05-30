@@ -40,8 +40,8 @@ body {
 					<div class="panel-heading">Quick links</div>
 					<div class="panel-body">
 						<ul>
-							<li><a href="<c:url value="${contextPath}/deadLine/today"/>">Today's</a></li>
-							<li><a href="<c:url value="${contextPath}/deadLine/tomorrow"/>">Tomorrow's</a></li>
+							<li><a href="${contextPath}/deadLine/today">Today's</a></li>
+							<li><a href="${contextPath}/deadLine/tomorrow">Tomorrow's</a></li>
 						</ul>
 					</div>
 				</div>

@@ -55,13 +55,7 @@ public class IndexController {
 
     @RequestMapping( { "/", "index" } )
     public String index( Model model, HttpServletRequest request ) {
-        System.out.println( "Index Request Mapping URI : " + request.getRequestURI() );
-        System.out.println( "Index Request Mapping URL : " + request.getRequestURL() );
         List<Task> tasks = taskService.findAll();
-        model.addAttribute( "tasks", tasks );
-
-        // Todo: A supprimer: model.addAttribute( "tagCloud",
-        // tagCloudService.buildTagCloud() );
 
         return "index";
     }
@@ -69,16 +63,13 @@ public class IndexController {
     @RequestMapping( "hello" )
     @ResponseBody
     public String hello() {
-        return "Hello world";
+        return "Hello world!";
     }
 
     @RequestMapping( "search" )
     public String search( String query, Model model ) {
         List<Task> taskQueried = taskService.findByQuery( query );
         model.addAttribute( "tasks", taskQueried );
-
-        // Todo: A supprimer: model.addAttribute( "tagCloud",
-        // tagCloudService.buildTagCloud() );
 
         return "index";
     }
@@ -87,9 +78,6 @@ public class IndexController {
     public String tag( @PathVariable String tag, Model model ) {
         List<Task> taskQueried = taskService.findByTag( tag );
         model.addAttribute( "tasks", taskQueried );
-
-        // Todo: A supprimer: model.addAttribute( "tagCloud",
-        // tagCloudService.buildTagCloud() );
 
         return "index";
     }

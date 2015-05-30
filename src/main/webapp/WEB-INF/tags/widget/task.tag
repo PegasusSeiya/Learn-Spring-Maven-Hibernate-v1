@@ -8,7 +8,7 @@
 	<p>
 		<fmt:formatDate value="${task.date}" pattern="dd MM yyyy" />
 	</p>
-	<span class="lead"><a href="<c:url value="${contextPath}/edit/${task.id}"/>">${fn:escapeXml(task.title)}</a></span>
+	<span class="lead"><a href="${contextPath}/edit/${task.id}">${fn:escapeXml(task.title)}</a></span>
 	<c:forEach var="tag" items="${task.tagArray}">
 		<code>
 			<c:out value="${tag}" />
@@ -18,5 +18,5 @@
 	<p>
 		<c:out value="${task.text}" />
 	</p>
-	<a href="<c:url value="${contextPath}/edit/${task.id}/delete"/>"><button class="btn btn-danger"></button></a>
+	<a href="${contextPath}/edit/${task.id}/delete"><button class="btn btn-danger"></button></a>
 </div>
