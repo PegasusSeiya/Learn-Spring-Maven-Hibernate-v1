@@ -7,8 +7,8 @@
 <html>
 <head>
 <title>Todooz</title>
+
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="page"/>
-<c:set var="rootPath" value="" scope="page"/>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
@@ -29,7 +29,7 @@ body {
 
 				<legend>Edit</legend>
 
-				<form:form class="form-horizontal" role="form" action="${rootPath}/edit"  method="post" commandName="task">
+				<form:form class="form-horizontal" role="form" action="${contextPath}/edit"  method="post" commandName="task">
 					<form:hidden path="id" />
 					<div class="form-group">
 						<label for="title" class="col-lg-2 control-label">Titre</label>
@@ -80,8 +80,8 @@ body {
 					<div class="panel-heading">Quick links</div>
 					<div class="panel-body">
 						<ul>
-							<li><a href="${rootPath}/today">Today's</a></li>
-							<li><a href="${rootPath}/tomorrow">Tomorrow's</a></li>
+							<li><a href="${contextPath}/deadLine/today">Today's</a></li>
+							<li><a href="${contextPath}/deadLine/tomorrow">Tomorrow's</a></li>
 						</ul>
 					</div>
 				</div>
@@ -90,7 +90,7 @@ body {
 					<div class="panel-heading">Tags</div>
 					<div class="panel-body">
 						<c:forEach var="tag" items="${tagCloud.tags}">
-							<a href="${rootPath}/tag/<c:out value="${tag}"/>" style="font-size: 14px"><c:out value="${tag}" /></a>
+							<a href="${contextPath}/tag/<c:out value="${tag}"/>" style="font-size: 14px"><c:out value="${tag}" /></a>
 						</c:forEach>
 					</div>
 				</div>
