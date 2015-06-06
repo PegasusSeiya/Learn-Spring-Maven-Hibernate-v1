@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
-
 	<display-name>J2EE-Spring-Maven</display-name>
+
 
 	<jsp-config>
 		<jsp-property-group>
@@ -50,6 +50,35 @@
 		<filter-name>encoding-filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+
+	<!-- Metro listener and servlet -->
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>todoozWebService</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>todoozWebService</servlet-name>
+		<url-pattern>/ws/todooz</url-pattern>
+	</servlet-mapping>
+
+	<!-- Corrige le bug tomcat qui charge le service web TaskWebService avant 
+		que le contexte spring ne soit chargé -->
+	<absolute-ordering />
+	<servlet>
+		<servlet-name>taskWebService</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>taskWebService</servlet-name>
+		<url-pattern>/ws/task</url-pattern>
+	</servlet-mapping>
 
 
 </web-app>
