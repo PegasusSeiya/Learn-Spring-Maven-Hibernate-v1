@@ -1,0 +1,14 @@
+# maven
+target/*
+
+# intellij
+.idea
+.iml
+
+# eclipse
+.project
+.classpath
+
+README.md
+derby.log
+/target/

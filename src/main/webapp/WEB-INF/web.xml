@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+	<display-name>J2EE-Spring-Maven</display-name>
+
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/jsp/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+
+	<!-- Spring servlet -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- Spring context -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-context.xml</param-value>
+	</context-param>
+
+	<!-- Spring UTF-8 filter -->
+	<filter>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- Metro listener and servlet -->
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>todoozWebService</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>todoozWebService</servlet-name>
+		<url-pattern>/ws/todooz</url-pattern>
+	</servlet-mapping>
+
+	<!-- Corrige le bug tomcat qui charge le service web TaskWebService avant 
+		que le contexte spring ne soit chargé -->
+	<absolute-ordering />
+	<servlet>
+		<servlet-name>taskWebService</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>taskWebService</servlet-name>
+		<url-pattern>/ws/task</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
