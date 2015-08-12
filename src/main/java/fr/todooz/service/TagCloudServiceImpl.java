@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import fr.todooz.domain.Task;
 import fr.todooz.util.TagCloud;
 
@@ -31,7 +24,8 @@ public class TagCloudServiceImpl implements TagCloudService {
     @Transactional( readOnly = true )
     public TagCloud buildTagCloud() {
         TagCloud tagCloud = new TagCloud();
-        List<Task> tasks = taskService.findAll();
+
+        List<Task> tasks = taskService.findAll(); 
 
         List<String> tags = new ArrayList<String>();
 

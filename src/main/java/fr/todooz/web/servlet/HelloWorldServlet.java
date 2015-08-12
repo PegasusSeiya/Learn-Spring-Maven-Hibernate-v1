@@ -2,17 +2,31 @@ package fr.todooz.web.servlet;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
+=======
+import javax.ejb.EJB;
+>>>>>>> ejb
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 public class HelloWorldServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+=======
+import fr.todooz.ejb.WelcomeEJB;
+
+public class HelloWorldServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
+    @EJB
+    private WelcomeEJB welcomeEJB;
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException,
             IOException {
-        request.getRequestDispatcher( "index.html" ).forward( request, response );
+    	 response.getWriter().write(welcomeEJB.hello("EJBs"));
+        //request.getRequestDispatcher( "index.html" ).forward( request, response );
     }
 }

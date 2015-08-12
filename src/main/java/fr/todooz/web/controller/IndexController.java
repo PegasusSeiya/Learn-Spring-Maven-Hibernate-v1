@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+<<<<<<< HEAD
+=======
+import javax.ejb.EJB;
+>>>>>>> ejb
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.todooz.domain.Task;
+<<<<<<< HEAD
+=======
+import fr.todooz.ejb.WelcomeEJB;
+>>>>>>> ejb
 import fr.todooz.service.TagCloudService;
 import fr.todooz.service.TaskService;
 import fr.todooz.util.TagCloud;
@@ -29,6 +37,18 @@ public class IndexController {
 
     @Inject
     private TagCloudService tagCloudService;
+    
+    /*
+     * Version 1
+    @EJB(mappedName = "java:module/WelcomeEJB")
+    private WelcomeEJB welcomeEJB;
+    */
+    
+    /*
+     * Version 2: Récupérer une référence vers l'ejb comme si c'était un composant Spring.
+     */
+    @Inject
+    private WelcomeEJB welcomeEJB;
 
     @PostConstruct
     public void initializeTaskSet() {
@@ -64,7 +84,9 @@ public class IndexController {
     @RequestMapping( "hello" )
     @ResponseBody
     public String hello() {
-        return "Hello world!";
+
+    	return welcomeEJB.hello("EJBs from Controller");
+        //return "Hello world!";
     }
 
     @RequestMapping( "search" )
