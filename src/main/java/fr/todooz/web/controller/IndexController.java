@@ -5,10 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-<<<<<<< HEAD
-=======
 import javax.ejb.EJB;
->>>>>>> ejb
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.todooz.domain.Task;
-<<<<<<< HEAD
-=======
 import fr.todooz.ejb.WelcomeEJB;
->>>>>>> ejb
 import fr.todooz.service.TagCloudService;
 import fr.todooz.service.TaskService;
 import fr.todooz.util.TagCloud;

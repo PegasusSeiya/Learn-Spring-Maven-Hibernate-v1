@@ -2,19 +2,11 @@ package fr.todooz.web.servlet;
 
 import java.io.IOException;
 
-<<<<<<< HEAD
-=======
 import javax.ejb.EJB;
->>>>>>> ejb
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-<<<<<<< HEAD
-public class HelloWorldServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-=======
 import fr.todooz.ejb.WelcomeEJB;
 
 public class HelloWorldServlet extends HttpServlet {
