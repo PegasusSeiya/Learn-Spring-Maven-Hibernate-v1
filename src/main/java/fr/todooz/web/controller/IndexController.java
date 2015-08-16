@@ -41,8 +41,10 @@ public class IndexController {
     /*
      * Version 2: Récupérer une référence vers l'ejb comme si c'était un composant Spring.
      */
+    /*
     @Inject
     private WelcomeEJB welcomeEJB;
+    */
 
     @PostConstruct
     public void initializeTaskSet() {
@@ -79,8 +81,8 @@ public class IndexController {
     @ResponseBody
     public String hello() {
 
-    	return welcomeEJB.hello("EJBs from Controller");
-        //return "Hello world!";
+    	//return welcomeEJB.hello("EJBs from Controller");
+        return "Hello world!";
     }
 
     @RequestMapping( "search" )

@@ -1,8 +1,0 @@
-----------------------------------------------------------------
-2015-08-13 21:19:43.917 GMT:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.6.2.1 - (999685) : instance a816c00e-014f-28ee-d096-000008215068 
-dans le répertoire de base de données C:\Users\Jessica\Desktop\Projets Application\Java\Learn-Spring-Maven-Hibernate\target\taskdb  avec le chargeur de classe java.net.URLClassLoader@6111ba37
-
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_45-b15
-Chargeur de classe de la base de données démarré - derby.database.classpath=''
