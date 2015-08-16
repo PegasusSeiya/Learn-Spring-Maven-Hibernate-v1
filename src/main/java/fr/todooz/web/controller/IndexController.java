@@ -41,6 +41,8 @@ public class IndexController {
     /*
      * Version 2: Récupérer une référence vers l'ejb comme si c'était un composant Spring.
      */
+    
+    //TODO: Décommenter si on veut utiliser les EJB
     @Inject
     private WelcomeEJB welcomeEJB;
 
@@ -78,7 +80,7 @@ public class IndexController {
     @RequestMapping( "hello" )
     @ResponseBody
     public String hello() {
-
+    	 //TODO: Décommenter si on veut utiliser les EJB
     	return welcomeEJB.hello("EJBs from Controller");
         //return "Hello world!";
     }

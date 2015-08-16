@@ -1,0 +1,21 @@
+<!-- Resource config for Tomcat -->
+<Context>
+   <Resource name="jdbc/taskdb"
+          auth="Container"
+          type="org.apache.commons.dbcp.BasicDataSource"
+          username=""
+          password=""
+          driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+          url="jdbc:derby:target/taskdb;create=true"
+          maxActive="10"
+          maxIdle="2"/>
+  
+  <!--    
+   <ResourceLink name="jdbc/taskdb"
+             global="jdbc/taskdb"
+             auth="Container"
+             type="javax.sql.DataSource" />
+             
+             -->
+   
+</Context>

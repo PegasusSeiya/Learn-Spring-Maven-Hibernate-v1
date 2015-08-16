@@ -2,6 +2,17 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
 	<display-name>J2EE-Spring-Maven</display-name>
 
+	<!-- make the JNDI DataSource available to the application under the specified namespace jdbc/taskdb -->
+	<!-- Decomment/r la section.
+	TODO: FIXME: /16/08/2015
+	<resource-ref>
+		<description>DataSource for DB Connection</description>
+		<res-ref-name>jdbc/taskdb</res-ref-name>
+		<res-type>org.apache.commons.dbcp.BasicDataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	-->
+
 
 	<jsp-config>
 		<jsp-property-group>
