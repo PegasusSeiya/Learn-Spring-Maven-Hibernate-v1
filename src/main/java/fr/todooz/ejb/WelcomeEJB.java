@@ -14,11 +14,14 @@ public class WelcomeEJB {
    }
    
    private int count = 0;
-
-   @Schedule(hour = "*", minute = "*", second = "*/5")
+   
+   
+   //@Schedule(hour = "*", minute = "*", second = "*/5")"
+   /*
    public void endlessly() {
        System.out.println(helloEJB.sayHello(" " + count));
 
        count++;
    }
+   */
 }
