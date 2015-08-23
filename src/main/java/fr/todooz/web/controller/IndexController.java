@@ -68,6 +68,11 @@ public class IndexController {
     public TagCloud tagCloud() {
         return tagCloudService.buildTagCloud();
     }
+    
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     @RequestMapping( { "/", "index" } )
     public String index( Model model, HttpServletRequest request ) {

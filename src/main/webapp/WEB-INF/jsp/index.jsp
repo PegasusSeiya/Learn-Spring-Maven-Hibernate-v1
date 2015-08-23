@@ -3,11 +3,14 @@
 <%@ taglib tagdir="/WEB-INF/tags/widget" prefix="widget"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Todooz</title>
-<c:set var="contextPath" value="${pageContext.servletContext.contextPath}" scope="page"/>
+<c:set var="contextPath"
+	value="${pageContext.servletContext.contextPath}" scope="page" />
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,12 +33,18 @@ body {
 		<div class="row">
 			<div class="col-lg-7 col-lg-offset-1">
 				<legend>All tasks</legend>
-				<c:out value="contextPath = ${contextPath}"/>
 				<c:forEach var="task" items="${tasks}">
 					<widget:task task="${task}" />
 				</c:forEach>
 			</div>
 			<div class="col-lg-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">Bienvenue <sec:authentication property="principal.username" /></div>
+					<div class="panel-body">
+						<a href="/logout">Logout <i class="icon-off"></i></a>
+					</div>
+				</div>
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">Quick links</div>
 					<div class="panel-body">
@@ -50,7 +59,8 @@ body {
 					<div class="panel-heading">Tags</div>
 					<div class="panel-body">
 						<c:forEach var="tag" items="${tagCloud.tags}">
-							<a href="${contextPath}/tag/${tag}" style="font-size: 14px"><c:out value="${tag}" /></a>
+							<a href="${contextPath}/tag/${tag}" style="font-size: 14px"><c:out
+									value="${tag}" /></a>
 						</c:forEach>
 					</div>
 				</div>
