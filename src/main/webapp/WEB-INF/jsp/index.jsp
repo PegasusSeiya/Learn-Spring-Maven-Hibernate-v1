@@ -3,7 +3,9 @@
 <%@ taglib tagdir="/WEB-INF/tags/widget" prefix="widget"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+	
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,12 +41,36 @@ body {
 			</div>
 			<div class="col-lg-3">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bienvenue <sec:authentication property="principal.username" /></div>
+					<div class="panel-heading">
+						Bienvenue
+					</div>
 					<div class="panel-body">
-						<a href="/logout">Logout <i class="icon-off"></i></a>
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<!-- For login user -->
+							<c:url value="/j_spring_security_logout" var="logoutUrl" />
+							<form action="${logoutUrl}" method="post" id="logoutForm">
+								<!-- TODO: Reactiver le controle csrf 
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								-->
+							</form>
+							<script>
+								function formSubmit() {
+									document.getElementById("logoutForm")
+											.submit();
+								}
+							</script>
+
+							<c:if test="${pageContext.request.userPrincipal.name != null}">
+								<h5>
+									User : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
+								</h5>
+							</c:if>
+
+
+						</sec:authorize>
 					</div>
 				</div>
-				
+
 				<div class="panel panel-default">
 					<div class="panel-heading">Quick links</div>
 					<div class="panel-body">
