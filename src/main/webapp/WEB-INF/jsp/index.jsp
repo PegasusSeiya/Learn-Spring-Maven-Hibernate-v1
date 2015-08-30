@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-	
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,17 +34,27 @@ body {
 			<div class="alert alert-success">${flashMessage}</div>
 		</c:if>
 		<div class="row">
-			<div class="col-lg-7 col-lg-offset-1">
+			<div class="col-lg-9">
 				<legend>All tasks</legend>
-				<c:forEach var="task" items="${tasks}">
-					<widget:task task="${task}" />
-				</c:forEach>
+				<table class="table table-hover table-responsive">
+					<thead>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Tags</th>
+						<th>Admin</th>
+					</thead>
+					<tbody>
+						<c:forEach var="task" items="${tasks}">
+							<widget:task task="${task}" />
+						</c:forEach>
+					</tbody>
+				</table>
+
 			</div>
 			<div class="col-lg-3">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						Bienvenue
-					</div>
+					<div class="panel-heading">Bienvenue</div>
 					<div class="panel-body">
 						<sec:authorize access="hasRole('ROLE_USER')">
 							<!-- For login user -->
@@ -62,7 +73,8 @@ body {
 
 							<c:if test="${pageContext.request.userPrincipal.name != null}">
 								<h5>
-									User : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
+									<div>Bienvenue  ${pageContext.request.userPrincipal.name} </div>
+									<div>Logout <a href="javascript:formSubmit()"><span class="glyphicon glyphicon-off" aria-hidden="true"></a></div>
 								</h5>
 							</c:if>
 
