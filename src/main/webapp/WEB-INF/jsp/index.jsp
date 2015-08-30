@@ -35,23 +35,36 @@ body {
 		</c:if>
 		<div class="row">
 			<div class="col-lg-9">
-				<legend>All tasks</legend>
-				<table class="table table-hover table-responsive">
-					<thead>
-						<th>Title</th>
-						<th>Date</th>
-						<th>Description</th>
-						<th>Tags</th>
-						<th>Admin</th>
-					</thead>
-					<tbody>
-						<c:forEach var="task" items="${tasks}">
-							<widget:task task="${task}" />
-						</c:forEach>
-					</tbody>
-				</table>
+				<sec:authorize access="hasRole('ROLE_USER')">
+					<div>
+						<legend>
+							Add new Task<a href="${contextPath}/add"
+								class="btn btn-default navbar-btn" style="margin-left: 10px">
+								<span class="glyphicon glyphicon-plus"></span>
+							</a>
+						</legend>
+					</div>
+				</sec:authorize>
 
+				<div>
+					<legend>All tasks</legend>
+					<table class="table table-hover table-responsive">
+						<thead>
+							<th>Title</th>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Tags</th>
+							<th>Admin</th>
+						</thead>
+						<tbody>
+							<c:forEach var="task" items="${tasks}">
+								<widget:task task="${task}" />
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
+
 			<div class="col-lg-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">Bienvenue</div>
@@ -73,12 +86,25 @@ body {
 
 							<c:if test="${pageContext.request.userPrincipal.name != null}">
 								<h5>
-									<div>Bienvenue  ${pageContext.request.userPrincipal.name} </div>
-									<div>Logout <a href="javascript:formSubmit()"><span class="glyphicon glyphicon-off" aria-hidden="true"></a></div>
+									<div>Bienvenue ${pageContext.request.userPrincipal.name}
+									</div>
+
 								</h5>
 							</c:if>
+							<div>
+								Logout <a href="javascript:formSubmit()"> <span
+									class="glyphicon glyphicon-off" aria-hidden="true"></span>
+								</a>
+							</div>
 
 
+						</sec:authorize>
+
+						<sec:authorize access="isAnonymous()">
+							<div>
+								Login <a href="${contextPath}/login"><span
+									class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+							</div>
 						</sec:authorize>
 					</div>
 				</div>
@@ -107,5 +133,24 @@ body {
 	</div>
 	<script src="${contextPath}/jquery/jquery-2.1.4.js"></script>
 	<script src="${contextPath}/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+	<script>
+	
+	var warnDelete = function() {
+		$("a[name='taskDelete']").on("click", function(event){
+				if (confirm("Yes, delete this task.") == true) {
+					//Nothing to do.
+				} else {
+					event.preventDefault();
+				}
+			}
+				
+		);
+	};
+		
+		$(function(){
+			warnDelete();
+		});
+		
+	</script>
 </body>
 </html>

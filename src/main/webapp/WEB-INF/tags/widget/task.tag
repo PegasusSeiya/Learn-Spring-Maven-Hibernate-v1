@@ -3,13 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <c:set var="contextPath"
 	value="${pageContext.servletContext.contextPath}" scope="page" />
 <tr>
 	<td>${fn:escapeXml(task.title)}</td>
 	<td>
 		<p>
-			<fmt:formatDate value="${task.date}" pattern="dd MM yyyy" />
+			<fmt:formatDate value="${task.date}" pattern="dd/MM/yyyy" />
 		</p>
 	</td>
 	<td>
@@ -24,15 +26,18 @@
 		</c:forEach>
 	</td>
 	<td>
-		<span class="lead">
-			<a href="${contextPath}/edit/${task.id}" title="Edit">
-				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-			</a>
-		</span>
-		<span class="lead">
-			<a href="${contextPath}/edit/${task.id}/delete" title="Delete">
-				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-			</a>
-		</span>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+			<span class="lead">
+				<a href="${contextPath}/edit/${task.id}" title="Edit">
+					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</a>
+			</span>
+			<span class="lead">
+				<a href="${contextPath}/edit/${task.id}/delete" title="Delete" name="taskDelete">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				</a>
+			</span>
+		</sec:authorize>
+		
 	</td>
 </tr>

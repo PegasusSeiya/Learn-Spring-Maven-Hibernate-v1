@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -87,7 +88,8 @@ public class IndexController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-							  @RequestParam(value = "logout", required = false) String logout) {
+							  @RequestParam(value = "logout", required = false) String logout, 
+							  HttpServletRequest request) {
 
 	  ModelAndView model = new ModelAndView();
 	  if (error != null) {
@@ -95,6 +97,9 @@ public class IndexController {
 	  }
 
 	  if (logout != null) {
+	  /* Récupération et destruction de la session en cours */
+        //HttpSession session = request.getSession();
+        //session.invalidate();
 		model.addObject("msg", "You've been logged out successfully.");
 	  }
 	  model.setViewName("login");

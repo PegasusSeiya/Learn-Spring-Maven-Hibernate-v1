@@ -12,9 +12,6 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search" name="query">
             </div>
-        </form>
-        <a href="${contextPath}/add" class="btn btn-default navbar-btn navbar-right">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
+        </form>        
     </div>
 </div>
