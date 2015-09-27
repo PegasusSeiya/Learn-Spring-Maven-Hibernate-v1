@@ -12,6 +12,9 @@
 	<http pattern="**/favicon.ico" security="none" />
 
 	<http pattern="/login" security="none" />
+	
+	<!-- Enable access to Ressources Rest -->
+	<http pattern="/rest/*" security="none" />
 
 	 <!-- enable use-expressions -->
 	<http auto-config="true" use-expressions="true">

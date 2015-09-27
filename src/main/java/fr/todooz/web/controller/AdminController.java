@@ -2,7 +2,9 @@ package fr.todooz.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -34,7 +36,22 @@ public class AdminController {
     private TagCloudService     tagCloudService;
 
     private static final String rootPath = "/"; // "/J2EE-Spring-Maven-1.0/";
-
+    
+    private static java.util.Map<String, TaskService> services = new HashMap<String, TaskService>();
+    
+    /*
+    public  void setTaskService() {
+    	services.put("taskService", taskService);
+    }
+    */
+    
+    @PostConstruct
+    public TaskService getTaskService() {
+        //return  services.get("taskService");
+    	System.out.println(">>>>>>>>>>>>>>> AdminController getTaskService taskService :"+taskService);
+    	return taskService;
+    }
+    
     /**
      * Un attribut TagCloud tagCloud va être ajouté au modèle quelle que soit la
      * méthode appelée.

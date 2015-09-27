@@ -93,5 +93,25 @@
 		<url-pattern>/ws/task</url-pattern>
 	</servlet-mapping>
 
+	<!-- Jersey servlet -->
+	<servlet>
+		<servlet-name>rest</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer
+		<!--  com.sun.jersey.spi.spring.container.servlet.SpringServlet -->
+		</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>fr.todooz.rest.TodoozApplication</param-value>
+			<!--
+			<param-name> com.sun.jersey.config.property.packages
+			</param-name>
+			<param-value>fr.todooz.rest</param-value>
+			-->
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rest</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>
