@@ -76,7 +76,7 @@ public class TaskServiceImpl implements TaskService {
      * Retrieve all instances of the table Task.
      */
     @Override
-    @Transactional( readOnly = true )
+    @Transactional("hibernate" ) // readOnly = true, 
     public List<Task> findAll() {
         Session session = sessionFactory.getCurrentSession();
 

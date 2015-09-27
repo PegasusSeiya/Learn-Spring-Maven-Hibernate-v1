@@ -1,9 +1,12 @@
 package fr.todooz.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -31,9 +34,13 @@ public class TaskServiceJPAImpl implements TaskService {
     }
 
     @Override
+    @Transactional( "jpa" )
     public List<Task> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+    	//TypedQuery<Task> query = entityManager.createQuery("Select t from Task", Task.class);
+
+        List<Task> tasks = getSomeTasks(); //query.getResultList();
+
+        return tasks;
     }
 
     @Override
@@ -70,6 +77,29 @@ public class TaskServiceJPAImpl implements TaskService {
     public List findByDate( String queryDeadline ) {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    
+    private List<Task> getSomeTasks() {
+    	List<Task> tasks = new ArrayList<Task>();
+    	
+    	tasks.add( buildTask( "Read Effective Java, Play with Cobol",
+                "Read Effective Java before it's too late", "java,cobol,effective" ) );
+    	tasks.add( buildTask( "Java vs Python", "Do Java or Python", "java,python" ) );
+    	tasks.add( buildTask( "Ruby and Python", "Ruby on Rails or Django", "ruby,python,django" ) );
+    	tasks.add( buildTask( "NodeJS", "Responsive application", "nodejs" ) );
+    	
+    	return tasks;
+
+    }
+
+    private Task buildTask( String title, String text, String tags ) {
+        Task task = new Task();
+        task.setDate( new Date() );
+        task.setTitle( title );
+        task.setText( text );
+        task.setTags( tags );
+        return task;
     }
 
 }

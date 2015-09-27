@@ -17,11 +17,11 @@ import fr.todooz.web.controller.AdminController;
 //@Component
 @Path("/tasks")
 //@RequestScoped
-public class TasksResource {
+public class TasksResource extends AdminController{
 	
-
+	
    @Inject
-   @Qualifier( "hibernate" )
+   @Qualifier( "jpa" )
    private TaskService taskService;
 	
 	
