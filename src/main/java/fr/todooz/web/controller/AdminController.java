@@ -3,14 +3,17 @@ package fr.todooz.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
@@ -31,26 +34,18 @@ public class AdminController {
     @Inject
     @Qualifier( "hibernate" )
     private TaskService         taskService;
+    
+    /*
+    @Inject
+    @Qualifier( "jpa" )
+    private TaskService         taskServiceJPA;
+    */
 
     @Inject
     private TagCloudService     tagCloudService;
-
+    
     private static final String rootPath = "/"; // "/J2EE-Spring-Maven-1.0/";
     
-    private static java.util.Map<String, TaskService> services = new HashMap<String, TaskService>();
-    
-    /*
-    public  void setTaskService() {
-    	services.put("taskService", taskService);
-    }
-    */
-    
-    @PostConstruct
-    public TaskService getTaskService() {
-        //return  services.get("taskService");
-    	System.out.println(">>>>>>>>>>>>>>> AdminController getTaskService taskService :"+taskService);
-    	return taskService;
-    }
     
     /**
      * Un attribut TagCloud tagCloud va être ajouté au modèle quelle que soit la

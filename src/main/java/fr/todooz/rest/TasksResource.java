@@ -3,6 +3,8 @@ package fr.todooz.rest;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,24 +19,19 @@ import fr.todooz.web.controller.AdminController;
 //@Component
 @Path("/tasks")
 //@RequestScoped
-public class TasksResource extends AdminController{
-	
+public class TasksResource{
 	
    @Inject
-   @Qualifier( "jpa" )
+   @Qualifier( "hibernate" )
    private TaskService taskService;
 	
 	
    @GET
    @Produces(MediaType.APPLICATION_JSON)
    public List<Task> tasks() {
-	   //TaskService taskService = TodoozContextListener.getTaskService();
-	   //AdminController adminController = new AdminController();
-	  //TaskService taskService = getTaskService(); //adminController.getTaskService();
+
+	   List<Task> tasks = taskService.findAll();
 	   
-	   System.out.println(">>>>>>>>>>>>>>> TasksResource taskService :"+taskService);
-	   
-	   //return null;
-       return (taskService != null) ? taskService.findAll() : null;
+       return tasks;
    }
 }

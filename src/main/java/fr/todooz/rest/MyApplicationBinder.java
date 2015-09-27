@@ -10,7 +10,7 @@ public class MyApplicationBinder extends AbstractBinder {
 
 	@Override
 	protected void configure() {
-		bind(TaskServiceJPAImpl.class).to(TaskService.class);
+		bind(TaskServiceImpl.class).to(TaskService.class);
 	}
 
 }

@@ -17,13 +17,35 @@ import fr.todooz.domain.Task;
 @Service
 @Qualifier( "jpa" )
 public class TaskServiceJPAImpl implements TaskService {
-    @PersistenceContext
-    private EntityManager entityManager;
+   // @PersistenceContext
+    //private EntityManager entityManager;
+    
+    
+    private EntityManager em;
+
+	@PersistenceContext
+	public void setEntityManager(EntityManager em) {
+		this.em = em;
+	}
+	
+
+	public EntityManager getEntityManager() {
+		return em;
+	}
+
+	public TaskServiceJPAImpl() {
+	}
+
+
+	public TaskServiceJPAImpl(EntityManager em) {
+		this.em = em;
+	}
+	
 
     @Override
     @Transactional( "jpa" )
     public void save( Task task ) {
-        entityManager.persist( task );
+    	em.persist( task );
 
     }
 
@@ -34,13 +56,22 @@ public class TaskServiceJPAImpl implements TaskService {
     }
 
     @Override
-    @Transactional( "jpa" )
+    @Transactional(value = "jpa", readOnly = true)
     public List<Task> findAll() {
-    	//TypedQuery<Task> query = entityManager.createQuery("Select t from Task", Task.class);
+    	
+    	System.out.println(">>>>>>>>>>>>>>> TaskServiceJPAImpl findAll entityManager :"+em);
+    	
+    	if (em != null){
+    		TypedQuery<Task> query = em.createQuery("from Task", Task.class);
 
-        List<Task> tasks = getSomeTasks(); //query.getResultList();
+            //List<Task> tasks = getSomeTasks(); //query.getResultList();
+            List<Task> tasks = query.getResultList();
 
-        return tasks;
+            return tasks;
+    	}
+    	
+    	return null;
+    	
     }
 
     @Override
