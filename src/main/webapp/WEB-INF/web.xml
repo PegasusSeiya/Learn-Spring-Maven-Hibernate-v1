@@ -1,117 +1,131 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
-	<display-name>J2EE-Spring-Maven</display-name>
-
-
-	<jsp-config>
-		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
-			<include-prelude>/WEB-INF/jsp/taglibs.jsp</include-prelude>
-		</jsp-property-group>
-	</jsp-config>
-
-	<!-- Spring servlet -->
-	<servlet>
-		<servlet-name>spring</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="3.0">
+  <display-name>J2EE-Spring-Maven</display-name>
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <include-prelude>/WEB-INF/jsp/taglibs.jsp</include-prelude>
+    </jsp-property-group>
+  </jsp-config>
+  <servlet>
+    <servlet-name>spring</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-	<!-- Spring context -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>spring</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener
 		</listener-class>
-	</listener>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
 			/WEB-INF/spring-context.xml,/WEB-INF/spring-security.xml
 		</param-value>
-	</context-param>
-
-	<!-- Spring UTF-8 filter -->
-	<filter>
-		<filter-name>encoding-filter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+  </context-param>
+  <filter>
+    <filter-name>encoding-filter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter
 		</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>encoding-filter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- Filtre Spring Security -->
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encoding-filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy
 		</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-
-	<!-- Metro listener and servlet -->
-	<listener>
-		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener
 		</listener-class>
-	</listener>
-	<servlet>
-		<servlet-name>todoozWebService</servlet-name>
-		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+  </listener>
+  <servlet>
+    <servlet-name>todoozWebService</servlet-name>
+    <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
 		</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>todoozWebService</servlet-name>
-		<url-pattern>/ws/todooz</url-pattern>
-	</servlet-mapping>
-
-	<!-- Corrige le bug tomcat qui charge le service web TaskWebService avant 
-		que le contexte spring ne soit chargé -->
-	<absolute-ordering />
-	<servlet>
-		<servlet-name>taskWebService</servlet-name>
-		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>todoozWebService</servlet-name>
+    <url-pattern>/ws/todooz</url-pattern>
+  </servlet-mapping>
+  <absolute-ordering/>
+  <servlet>
+    <servlet-name>taskWebService</servlet-name>
+    <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
 		</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>taskWebService</servlet-name>
-		<url-pattern>/ws/task</url-pattern>
-	</servlet-mapping>
-
-	<!-- Jersey servlet -->
-	<servlet>
-		<servlet-name>rest</servlet-name>
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer
-		<!--  com.sun.jersey.spi.spring.container.servlet.SpringServlet -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>taskWebService</servlet-name>
+    <url-pattern>/ws/task</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>rest</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer
+		
 		</servlet-class>
-		<init-param>
-			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>fr.todooz.rest.TodoozApplication</param-value>
-			<!--
-			<param-name> com.sun.jersey.config.property.packages
-			</param-name>
-			<param-value>fr.todooz.rest</param-value>
-			-->
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>rest</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
-
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>fr.todooz.rest.TodoozApplication</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rest</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Upload -->
+  <servlet>
+    <description></description>
+    <display-name>Upload</display-name>
+    <servlet-name>Upload</servlet-name>
+    <servlet-class>fr.todooz.web.servlet.ged.Upload</servlet-class>
+    <init-param>
+      <param-name>chemin</param-name>
+      <param-value>/upload_folder/</param-value>
+    </init-param>
+    <multipart-config>
+      <location>c:/upload_folder</location>
+      <max-file-size>10485760</max-file-size>
+      <max-request-size>52428800</max-request-size>
+      <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Download -->
+  <servlet>
+    <description></description>
+    <display-name>Download</display-name>
+    <servlet-name>Download</servlet-name>
+    <servlet-class>fr.todooz.web.servlet.ged.Download</servlet-class>
+    <init-param>
+      <param-name>chemin</param-name>
+      <param-value>/upload_folder/</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Download</servlet-name>
+    <url-pattern>/fichiers/*</url-pattern>
+  </servlet-mapping>
 </web-app>
