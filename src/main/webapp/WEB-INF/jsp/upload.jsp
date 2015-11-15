@@ -8,7 +8,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value="/assets/css/form.css"/>" />
 </head>
 <body>
-	<form action="<c:url value="/upload" />" method="post"
+	<form action="<c:url value="/fileManage/upload" />" method="post"
 		enctype="multipart/form-data">
 		<fieldset>
 			<legend>Envoi de fichier</legend>

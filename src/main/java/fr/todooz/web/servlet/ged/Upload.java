@@ -89,7 +89,7 @@ public class Upload extends HttpServlet {
 						.substring( nomFichier.lastIndexOf( '\\' ) + 1 );
 			
 			/* Écriture du fichier sur le disque */
-			ecrireFichier( part, nomFichier, chemin );
+			ecrireFichierServer( part, nomFichier, chemin );
 			
 			request.setAttribute( nomChamp, nomFichier );
 		}
@@ -151,7 +151,7 @@ public class Upload extends HttpServlet {
 	paramètre
 	* sur le disque, dans le répertoire donné et avec le nom donné.
 	*/
-	private void ecrireFichier( Part part, String nomFichier, String
+	private void ecrireFichierServer( Part part, String nomFichier, String
 	chemin ) throws IOException {
 		/* Prépare les flux. */
 		BufferedInputStream entree = null;

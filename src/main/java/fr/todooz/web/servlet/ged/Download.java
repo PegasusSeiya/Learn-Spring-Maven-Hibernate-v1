@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URLDecoder;
 
@@ -84,6 +85,12 @@ public class Download extends HttpServlet {
 					+ fichier.getName() + "\"" );
 		
 		
+		ecrireFichierClient(response, fichier);
+	}
+	
+
+	private void ecrireFichierClient(HttpServletResponse response, File fichier)
+			throws FileNotFoundException, IOException {
 		/* Prépare les flux */
 		BufferedInputStream entree = null;
 		BufferedOutputStream sortie = null;
