@@ -34,5 +34,10 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
+	
+	<!-- MultiPart Form -->
+	<!-- 
+	<bean id="multipartResolver"
+  		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	-->
 </beans>
