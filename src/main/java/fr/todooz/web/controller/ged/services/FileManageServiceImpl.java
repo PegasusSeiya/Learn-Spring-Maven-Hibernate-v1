@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -83,7 +84,7 @@ public class FileManageServiceImpl implements FileManageService{
 	 * @see fr.todooz.web.controller.ged.services.FileManageService#ecrireFichierServer(javax.servlet.http.Part, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void ecrireFichierServer( Part part, String nomFichier, String
+	public void ecrireFichierServer( InputStream inputStream, String nomFichier, String
 	chemin ) throws IOException {
 		/* Prépare les flux. */
 		BufferedInputStream entree = null;
@@ -91,7 +92,7 @@ public class FileManageServiceImpl implements FileManageService{
 		
 		try {
 			/* Ouvre les flux. */
-			entree = new BufferedInputStream( part.getInputStream(), TAILLE_TAMPON );
+			entree = new BufferedInputStream( inputStream, TAILLE_TAMPON );
 			sortie = new BufferedOutputStream( 
 					 	new FileOutputStream( 
 					 			new File( chemin + nomFichier ) ),
@@ -107,11 +108,17 @@ public class FileManageServiceImpl implements FileManageService{
 			}
 		} finally {
 			try {
-				sortie.close();
+				if (sortie!=null){
+					sortie.close();
+				}
+				
 			} catch ( IOException ignore ) {
 			}
 			try {
-				entree.close();
+				if (entree!=null){
+					entree.close();
+				}
+				
 			} catch ( IOException ignore ) {
 			}
 		}

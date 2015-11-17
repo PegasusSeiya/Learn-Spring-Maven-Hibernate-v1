@@ -3,6 +3,7 @@ package fr.todooz.web.controller.ged.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -29,7 +30,7 @@ public interface FileManageService {
 	 * @param chemin
 	 * @throws IOException
 	 */
-	void ecrireFichierServer(Part part, String nomFichier, String chemin) throws IOException;
+	void ecrireFichierServer(InputStream inputStream, String nomFichier, String chemin) throws IOException;
 	
 	
 	/**
