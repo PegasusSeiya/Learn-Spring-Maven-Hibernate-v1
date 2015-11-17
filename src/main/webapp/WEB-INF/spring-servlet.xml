@@ -19,6 +19,9 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 	<!-- Forwarde les demandes de fichiers statiques vers la servlet par défaut 
 		du conteneur -->
 	<mvc:default-servlet-handler />
+	
+	<bean id="multipartResolver"
+  		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 	<!-- Définition de la Locale pour les opérations de formattage -->
 	<bean id="localeResolver"
