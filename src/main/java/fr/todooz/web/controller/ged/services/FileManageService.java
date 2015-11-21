@@ -42,5 +42,7 @@ public interface FileManageService {
 	 */
 	void ecrireFichierClient(HttpServletResponse response, File fichier)
 			throws FileNotFoundException, IOException;
-
+	
+	
+	
 }

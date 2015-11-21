@@ -15,5 +15,47 @@
             <li>${file}</li>
         </c:forEach>
     </ol>
+    
+    <p>Files already uploaded</p>
+    <div id="folder">
+    	<ul id="folderList">
+    		
+    	</ul>
+    </div>
 </body>
+
+<script src="/jquery/jquery-2.1.4.min.js"></script>
+<script>
+
+	var urlListFileUploaded = "/listFileUploaded";
+
+	var listFileUploaded = function(url){
+		
+		$.get(url, function(response){
+			
+			console.log(response.data);
+			console.log(JSON.parse(response.data));
+			
+		});
+		
+	}
+
+	$(function() {
+		
+		listFileUploaded();
+		
+		
+	    //add more file components if Add is clicked
+	    /*
+	    $('#addFile').click(function() {
+	        var fileIndex = $('#fileTable tr').children().length - 1;
+	        $('#fileTable').append(
+	                '<tr><td>'+
+	                '   <input type="file" name="files['+ fileIndex +']" />'+
+	                '</td></tr>');
+	    });
+	    */
+	     
+	});
+</script>
 </html>

@@ -3,13 +3,12 @@ package fr.todooz.web.controller.ged;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import fr.todooz.util.ValidatorTools;
+import com.google.gson.Gson;
 
 import fr.todooz.web.controller.ged.form.FileUploadForm;
 import fr.todooz.web.controller.ged.services.FileManageService;
@@ -56,6 +55,7 @@ public class FileManageController {
 	@RequestMapping( value = "upload", method = RequestMethod.POST )
     public String upload(@ModelAttribute("uploadForm") FileUploadForm uploadForm,
             Model map ) throws IOException {
+		
 		List<MultipartFile> files = uploadForm.getFiles();
 		 
         List<String> fileNames = new ArrayList<String>();
@@ -79,13 +79,52 @@ public class FileManageController {
         return FILE_UPLOAD_SUCCESS;
 
     }
+	
+	
+	@RequestMapping( value = "listFileUploaded", method = RequestMethod.GET )
+	public String listFileUploaded( HttpServletRequest request, HttpServletResponse response ){
+		
+		//AJAX CALL!
+		
+		//Chemin du repertoire sur le serveur contenant les fichiers uploaded
+		String chemin = SERVER_REPO_PATH;
+		
+		//Création de l'objet file représentant le répertoire
+		File folder = new File(chemin);
+		
+		File[] files = folder.listFiles();
+		
+		if (files != null && files.length > 0){
+						
+			List<String> fileNames = new ArrayList<String>();
+			
+			List<File> filesList = Arrays.asList(files);
+			
+			for (File file: filesList){
+				
+				if (file.isFile()){
+					System.out.println("File name :" + file.getName());
+					fileNames.add( file.getName());
+					
+				}
+			}
+			
+			Gson gson = new Gson();
+			
+			return gson.toJson(fileNames);
+			
+		}
+
+		
+		return "";
+	}
 
 	
 	@RequestMapping( value = "download", method = RequestMethod.GET )
 	public void download( HttpServletRequest request, HttpServletResponse response ) throws FileNotFoundException, IOException{
 		/* Lecture du paramètre 'chemin' passé à la servlet via la
 		déclaration dans le web.xml */
-		String chemin = request.getServletContext().getInitParameter( CHEMIN );
+		String chemin = SERVER_REPO_PATH;
 		
 		/* Récupération du chemin du fichier demandé au sein de l'URL de la
 		requête */
