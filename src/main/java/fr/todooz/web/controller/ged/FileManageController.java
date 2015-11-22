@@ -82,7 +82,7 @@ public class FileManageController {
 	
 	
 	@RequestMapping( value = "listFileUploaded", method = RequestMethod.GET )
-	public String listFileUploaded( HttpServletRequest request, HttpServletResponse response ){
+	public void listFileUploaded( HttpServletRequest request, HttpServletResponse response ){
 		
 		//AJAX CALL!
 		
@@ -111,12 +111,12 @@ public class FileManageController {
 			
 			Gson gson = new Gson();
 			
-			return gson.toJson(fileNames);
+			//return gson.toJson(fileNames);
 			
 		}
 
 		
-		return "";
+		//return "";
 	}
 
 	
