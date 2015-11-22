@@ -39,14 +39,12 @@ public class FileManageController {
 	
 	private static final int TAILLE_TAMPON 			= 10240; // 10 ko
 	private static final int DEFAULT_BUFFER_SIZE 	= 10240; // 10 ko
-	
-	@Inject
-	private ServletContext servletContext;
+
 	
 	@Inject
 	private FileManageService fileManageService;
 	
-	@RequestMapping( "uploadInvite" )
+	@RequestMapping( value = "uploadInvite", method = RequestMethod.GET )
     public String uploadInvite() {
 		/* Affichage de la page d'envoi de fichiers */
 
