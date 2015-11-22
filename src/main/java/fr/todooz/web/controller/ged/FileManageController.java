@@ -45,7 +45,7 @@ public class FileManageController {
 	@Inject
 	private FileManageService fileManageService;
 	
-	@RequestMapping( "uploadInvite" )
+	@RequestMapping( value = "uploadInvite", method = RequestMethod.GET )
     public String uploadInvite() {
 		/* Affichage de la page d'envoi de fichiers */
 
