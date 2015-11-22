@@ -112,9 +112,6 @@ public class FileManageServiceImpl implements FileManageService{
 					sortie.close();
 				}
 				
-			} catch ( IOException ignore ) {
-			}
-			try {
 				if (entree!=null){
 					entree.close();
 				}
@@ -147,11 +144,13 @@ public class FileManageServiceImpl implements FileManageService{
 			}
 		} finally {
 			try {
-				sortie.close();
-			} catch ( IOException ignore ) {
-			}
-			try {
-				entree.close();
+				if (sortie!=null){
+					sortie.close();
+				}
+				
+				if (entree!=null){
+					entree.close();
+				}
 			} catch ( IOException ignore ) {
 			}
 		}

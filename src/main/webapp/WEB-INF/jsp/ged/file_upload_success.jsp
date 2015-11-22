@@ -27,22 +27,49 @@
 <script src="/jquery/jquery-2.1.4.min.js"></script>
 <script>
 
-	var urlListFileUploaded = "/listFileUploaded";
+	var urlListFileUploaded = "/fileManage/listFileUploaded";
 
 	var listFileUploaded = function(url){
 		
-		$.get(url, function(response){
+		$.get(url)
+		.done(function(response){
 			
-			console.log(response.data);
-			console.log(JSON.parse(response.data));
+			console.log(response);
+			
+			listFiles(response)
+			
+		})
+		.fail(function(response, textStatus, jqXHR){
+			
+			console.log(response);
+			console.log(textStatus);
+			console.log(jqXHR);
 			
 		});
 		
-	}
+	};
+	
+	
+	var listFiles = function(fileNames){
+		
+		var $folderList = $("#folderList");
+		
+		var urlDownLoad = "download?file=";
+		
+		fileNames.forEach(function(value, index){
+			var $li 	= $("<li></li>");
+			var $link 	= $("<a></a>")
+							.attr("href", urlDownLoad+value)
+							.text(value);
+			$li.append($link);
+			$folderList.append($li);	
+		});
+		
+	};
 
 	$(function() {
 		
-		listFileUploaded();
+		listFileUploaded(urlListFileUploaded);
 		
 		
 	    //add more file components if Add is clicked

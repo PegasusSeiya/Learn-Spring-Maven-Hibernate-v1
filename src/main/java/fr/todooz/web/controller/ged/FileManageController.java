@@ -12,11 +12,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -81,8 +83,11 @@ public class FileManageController {
     }
 	
 	
-	@RequestMapping( value = "listFileUploaded", method = RequestMethod.GET )
-	public void listFileUploaded( HttpServletRequest request, HttpServletResponse response ){
+	@RequestMapping( value = "listFileUploaded", 
+					 method = RequestMethod.GET,
+					 produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String listFileUploaded( HttpServletRequest request, HttpServletResponse response ){
 		
 		//AJAX CALL!
 		
@@ -111,12 +116,12 @@ public class FileManageController {
 			
 			Gson gson = new Gson();
 			
-			//return gson.toJson(fileNames);
+			return gson.toJson(fileNames);
 			
 		}
 
 		
-		//return "";
+		return "";
 	}
 
 	
@@ -128,7 +133,10 @@ public class FileManageController {
 		
 		/* Récupération du chemin du fichier demandé au sein de l'URL de la
 		requête */
-		String fichierRequis = request.getPathInfo();
+		String fichierRequis = request.getParameter("file");
+		
+		System.out.println("download chemin :" + chemin);
+		System.out.println("download fichierRequis :" + fichierRequis);
 		
 		/* Vérifie qu'un fichier a bien été fourni */
 		if ( fichierRequis == null || "/".equals( fichierRequis ) ) {
