@@ -30,7 +30,8 @@ public interface FileManageService {
 	 * @param chemin
 	 * @throws IOException
 	 */
-	void ecrireFichierServer(InputStream inputStream, String nomFichier, String chemin) throws IOException;
+	void ecrireFichierServer(InputStream inputStream, String nomFichier, String chemin) 
+			throws FileNotFoundException, IOException;
 	
 	
 	/**

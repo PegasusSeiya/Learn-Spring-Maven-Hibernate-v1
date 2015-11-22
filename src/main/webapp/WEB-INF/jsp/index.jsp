@@ -108,6 +108,24 @@ body {
 						</sec:authorize>
 					</div>
 				</div>
+				
+				<sec:authorize access="!isAnonymous()">
+					<div class="panel panel-default">
+						<div class="panel-heading">GED</div>
+						<div class="panel-body">
+							<ul>
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<li><a href="${contextPath}/fileManage/uploadInvite">Upload</a></li>
+								</sec:authorize>
+								<sec:authorize access="hasRole('ROLE_USER')">
+									<li><a href="${contextPath}/fileManage/upload">Download</a></li>
+								</sec:authorize>
+							</ul>
+						</div>
+					</div>
+				</sec:authorize>
+				
+				
 
 				<div class="panel panel-default">
 					<div class="panel-heading">Quick links</div>

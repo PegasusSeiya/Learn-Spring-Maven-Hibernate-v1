@@ -85,7 +85,7 @@ public class FileManageServiceImpl implements FileManageService{
 	 */
 	@Override
 	public void ecrireFichierServer( InputStream inputStream, String nomFichier, String
-	chemin ) throws IOException {
+	chemin ) throws FileNotFoundException, IOException {
 		/* Prépare les flux. */
 		BufferedInputStream entree = null;
 		BufferedOutputStream sortie = null;
@@ -106,7 +106,10 @@ public class FileManageServiceImpl implements FileManageService{
 			while ( ( longueur = entree.read( tampon ) ) > 0 ) {
 				sortie.write( tampon, 0, longueur );
 			}
-		} finally {
+		}catch (FileNotFoundException  e){
+			System.out.println("FileNotFoundException at ecrireFichierServer : "+e);
+			throw e;
+		}finally {
 			try {
 				if (sortie!=null){
 					sortie.close();

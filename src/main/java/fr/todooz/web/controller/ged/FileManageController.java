@@ -54,7 +54,7 @@ public class FileManageController {
 		return FILE_UPLOAD_FORM;
     }
 	
-	@RequestMapping( value = "upload", method = RequestMethod.POST )
+	@RequestMapping( value = "upload", method = {RequestMethod.POST, RequestMethod.GET} )
     public String upload(@ModelAttribute("uploadForm") FileUploadForm uploadForm,
             Model map ) throws IOException {
 		
@@ -65,16 +65,29 @@ public class FileManageController {
         String chemin = SERVER_REPO_PATH;
          
         if(null != files && files.size() > 0) {
-            for (MultipartFile multipartFile : files) {
- 
-                String fileName = multipartFile.getOriginalFilename();
-                fileNames.add(fileName);
-                
-                //Handle file content - multipartFile.getInputStream()
-                fileManageService.ecrireFichierServer(multipartFile.getInputStream(), fileName, chemin);
-
- 
-            }
+        	
+        	int index = 1;
+        	
+        	try {
+	            for (MultipartFile multipartFile : files) {
+	 
+	                String fileName = multipartFile.getOriginalFilename();
+	                
+	                fileNames.add(fileName);
+	                
+	                //Handle file content - multipartFile.getInputStream()
+	                fileManageService.ecrireFichierServer(multipartFile.getInputStream(), fileName, chemin);
+	                
+	                index++;
+	            }
+        	}catch (FileNotFoundException e){
+        		
+        		StringBuffer errorSB = new StringBuffer("FileNotFoundException starting from file field number ")
+        									.append(index);
+        		
+        		map.addAttribute("errors", errorSB.toString());
+        		return FILE_UPLOAD_FORM;
+        	}
         }
          
         map.addAttribute("files", fileNames);
