@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.todooz.domain.Task;
 import fr.todooz.service.TagCloudService;
+import fr.todooz.service.TaskMailerService;
 import fr.todooz.service.TaskService;
 import fr.todooz.util.TagCloud;
 
@@ -38,6 +39,9 @@ public class AdminController {
 
     @Inject
     private TagCloudService     tagCloudService;
+    
+    @Inject
+    private TaskMailerService taskMailerService;
     
     private static final String rootPath = "/"; // "/J2EE-Spring-Maven-1.0/";
     
@@ -85,6 +89,17 @@ public class AdminController {
         if ( result.hasErrors() ) {
             return "edit";
         }
+        
+        String changeState = "add";
+        
+        if ( task.getId() != null && !"".equals(task.getId())){
+        	changeState = "modify";
+		}
+        
+        taskMailerService.sendEmailWithTaskInfo(task, changeState);
+
+        
+        
         taskService.save( task );
 
         redirectAttributes.addFlashAttribute( "flashMessage", "Sauvegarde réussie." );
@@ -94,8 +109,14 @@ public class AdminController {
 
     @RequestMapping( "edit/{id}/delete" )
     public String delete( @PathVariable Long id, Model model, RedirectAttributes redirectAttributes ) {
+        
+    	Task taskToBeDeleted = taskService.findById( id );
+    	
+        model.addAttribute( "task", taskToBeDeleted );
+        
+        taskMailerService.sendEmailWithTaskInfo(taskToBeDeleted, "delete");
+        
         taskService.delete( id );
-        model.addAttribute( "task", taskService.findById( id ) );
 
         redirectAttributes.addFlashAttribute( "flashMessage", "Suppression réussie." );
 
