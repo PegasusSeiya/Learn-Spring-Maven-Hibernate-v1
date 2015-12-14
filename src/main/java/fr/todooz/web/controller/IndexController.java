@@ -168,7 +168,9 @@ public class IndexController {
     }
 
     private void saveSomeTasks() {
-
+    	
+    	taskService.save( buildTask( "Write Changelog",
+                "Write Changelog since begining and indicate projet's guidelines", "changelog,update,software building" ) );
         taskService.save( buildTask( "Read Effective Java, Play with Cobol",
                 "Read Effective Java before it's too late", "java,cobol,effective" ) );
         taskService.save( buildTask( "Java vs Python", "Do Java or Python", "java,python" ) );
