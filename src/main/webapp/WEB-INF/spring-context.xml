@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -9,7 +10,9 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+    http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<!-- Découverte des services -->
 	<context:component-scan base-package="fr.todooz.service" />
@@ -60,6 +63,10 @@
 
 	<!-- active le support des annotations @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- Active le support pour l'exécution des méthodes asynchrones -->
+	<task:annotation-driven executor="myExecutor"/>
+	<task:executor id="myExecutor" pool-size="5"/>
 
 	<!-- Nécessaire pour TaskServiceJAPImpl -->
 	<bean id="entityManagerFactory"

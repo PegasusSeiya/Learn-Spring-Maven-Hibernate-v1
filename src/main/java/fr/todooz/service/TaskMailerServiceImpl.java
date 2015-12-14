@@ -11,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import fr.todooz.domain.Task;
@@ -24,8 +25,7 @@ public class TaskMailerServiceImpl implements TaskMailerService {
 	// Sender's email ID needs to be mentioned
 	private final static String from 		= "bach.phanluong@centraliens-marseille.fr";
 
-	private final static String username 	= "bach.phanluong@centraliens-marseille.fr";// change
-																		// accordingly
+	private final static String username 	= "bach.phanluong@centraliens-marseille.fr";// change accordingly
 	private final static String password 	= "xxxx"; // change accordingly
 	
 	// SMTP Server host
@@ -33,15 +33,18 @@ public class TaskMailerServiceImpl implements TaskMailerService {
 	
 	// SMTP Server port
 	private final static String port 		= "587";
-
+	
+	@Async
 	@Override
-	public boolean sendEmailWithTaskInfo(final Task task, final String changeState) {
+	public void sendEmailWithTaskInfo(final Task task, final String changeState) {
 	
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
 		props.put("mail.smtp.auth", "true");
+		//Secured connection using SSL
 		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.ssl.trust", host);
 
 		// Get the Session object.
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
@@ -64,7 +67,7 @@ public class TaskMailerServiceImpl implements TaskMailerService {
 			StringBuilder sbSubject = new StringBuilder("Some change in the Todooz' list: A task has been ");
 			StringBuilder sbText = new StringBuilder("Hello ")
 										.append(username)
-										.append(", \n")
+										.append(",\n \n")
 										.append("The following task has been ");
 			
 			switch(changeState){
@@ -110,7 +113,7 @@ public class TaskMailerServiceImpl implements TaskMailerService {
 			
 			sbText.append("Content : ")
 					.append(task.getText())
-					.append(", \n");
+					.append(".\n");
 
 			// Now set the actual message
 			message.setText(sbText.toString());
@@ -121,12 +124,13 @@ public class TaskMailerServiceImpl implements TaskMailerService {
 			Transport.send(message);
 
 			System.out.println("Sent message successfully....");
+			
+			
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 
-		return false;
 	}
 
 }

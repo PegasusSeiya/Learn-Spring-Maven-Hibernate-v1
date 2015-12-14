@@ -4,6 +4,6 @@ import fr.todooz.domain.Task;
 
 public interface TaskMailerService {
 	
-	public boolean sendEmailWithTaskInfo(final Task task, final String changeState);
+	public void sendEmailWithTaskInfo(final Task task, final String changeState);
 	
 }
