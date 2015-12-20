@@ -146,6 +146,12 @@ body {
 						</c:forEach>
 					</div>
 				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Products</div>
+					<div class="panel-body">
+						<a href="${contextPath}/backlog" style="font-size: 14px">Backlog</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
