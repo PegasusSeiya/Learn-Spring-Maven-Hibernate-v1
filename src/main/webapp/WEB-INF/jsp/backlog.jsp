@@ -54,6 +54,76 @@
 			  		<td>1.00</td>
 			  		<td></td>
 			  	</tr>
+			  	<tr>
+			  		<td>JPA</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>EJB</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>JNDI</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>WebService Soap</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>WebService Rest</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>MySql</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>Selenium</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>Spring Security</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>GED</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
+			  	<tr>
+			  		<td>Mailing</td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  		<td></td>
+			  	</tr>
 			  </tbody>			  
 			</table>
 			
