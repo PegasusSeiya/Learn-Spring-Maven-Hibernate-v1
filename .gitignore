@@ -11,4 +11,4 @@ target/*
 README.md
 derby.log
 /target/
-
+/.settings/
