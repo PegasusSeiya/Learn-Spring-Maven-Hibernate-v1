@@ -124,6 +124,13 @@
 			  		<td></td>
 			  		<td></td>
 			  	</tr>
+				<tr>
+			  		<td>Jenkins</td>
+			  		<td>Integrate Jenkins CI server in the development process.</td>
+			  		<td>master</td>
+			  		<td></td>
+			  		<td>02/01/2015</td>
+			  	</tr>
 			  </tbody>			  
 			</table>
 			

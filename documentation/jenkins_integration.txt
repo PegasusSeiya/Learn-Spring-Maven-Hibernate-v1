@@ -1,0 +1,30 @@
+Following lines explain basic configurations for integrating Jenkins:
+
+1) Download Jenkins war archive: 
+version installed: 1.643
+
+2) Launch Jenkins server:
+java -jar jenkins.war
+
+3) Install Github plugin for Jenkins:
+/pluginManager/available
+version installed: 1.14.2
+
+4) Configure Jenkins system:
+/configure
+- JDK: name & JAVA_HOME
+- Maven: name & Install automatically from Apache
+- Let others by default.
+
+5) Create a Job:
+- Create a Maven style project
+- Give name
+- Check option 'GitHub project' and provide url to GitHub repository
+- In 'Gestion de code source', check option 'Git' and provide url to GitHub repository
+- Let others by default.
+
+6) Launch Job build.
+
+7) Get Job build:
+At the end of the build, get your archive build under :
+.jenkins\jobs\jenkins_project_name\modules\pom_groupId$pom_artifactId\builds\build_number\archive\pom_groupId\pom_artifactId\pom_version
